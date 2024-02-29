@@ -115,13 +115,14 @@ if __name__ == '__main__':
 
     # Writing script start message
     file_obj.writeData(f'=============||Script started ({helper.prepareCurrentTime()} {time_zone})||=============', False)
-
     # Creating Main object and executing the main method
     main_obj = Main()
     try:
         main_obj.main()  # Executing main method
         # Writing script finish message
         file_obj.writeData(f'=============||Script finished ({helper.prepareCurrentTime()} {time_zone})||=============\n', False)
+        print('Script is over.')
     except Exception as e:
         # Handling and logging any exceptions that occur during execution
         file_obj.writeData(f'ERROR: {e}\n=============||Script terminated with an ERROR ({helper.prepareCurrentTime()} {time_zone})||=============\n', False)
+        print('Script is terminated with error.')
