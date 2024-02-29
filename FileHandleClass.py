@@ -36,4 +36,3 @@ class FileHandling:
                 file.write(f'{FileHandling.count_log}. {info}\n')
             else:
                 file.write(f'{info}\n')
-0
