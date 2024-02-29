@@ -1,42 +1,41 @@
-import re
-from datetime import datetime
-from ConstantsModule import Constants
-
+import re  # Importing regular expression module
+from datetime import datetime  # Importing datetime module for date and time operations
+from ConstantsModule import Constants  # Importing constants
 
 class Helper:
 
     def __init__(self):
         pass
 
+    # Method to check if a column is a primary column (i.e., all values are unique)
     def isPrimaryColumn(self, primary_column_df):
         return primary_column_df.count() == primary_column_df.nunique()
 
+    # Method to prepare current date in the format YYYYMMDD
     def prepareCurrentDate(self):
         current_datetime = datetime.now()
-
         year = current_datetime.year
         month = current_datetime.month
         day = current_datetime.day
-
         year_str = str(year)
-        month_str = str(month).zfill(2)
-        day_str = str(day).zfill(2)
-
+        month_str = str(month).zfill(2)  # Zero-padding for month
+        day_str = str(day).zfill(2)  # Zero-padding for day
         return year_str + month_str + day_str
 
+    # Method to prepare current time with optional format string
     def prepareCurrentTime(self, format_str=Constants.DATE_FORMAT):
         current_time = datetime.now()
         return current_time.strftime(format_str)
 
+    # Method to fetch column names from a DataFrame
     def fetchColumnName(self, dataframe):
         return dataframe.columns.tolist()
 
-    import re
-
+    # Method to classify the type of column (numeric, string, date, alphanumeric)
     def classifyColumnType(self, column_df):
+        # Implementation to classify column type based on data distribution
         column_values = column_df.dropna().astype(str)
         total_count = len(column_values)
-
         numeric_count = alpha_count = date_count = 0
         date_pattern = re.compile(r'\b\d{2}/\d{2}/\d{4}\b')
 
@@ -62,8 +61,11 @@ class Helper:
         else:
             return 'alphanumeric'
 
+    # Method to check pattern consistency of a column
     def checkPatternConsistency(self, column_df):
+        # Checks pattern consistency of a column.
         def checkLengthConsistency():
+            # Checks length consistency within the column.
             column = column_df.dropna()
             lengths = [len(str(x)) for x in column]
             most_common_length = max(set(lengths), key=lengths.count)
@@ -78,6 +80,7 @@ class Helper:
             return inconsistent_rows
 
         def checkSerialConsistency():
+            # Checks consistency of values in a serial pattern.
             values = column_df.dropna().astype(str)
             pattern = None
             inconsistent_values = []
@@ -95,6 +98,7 @@ class Helper:
             return inconsistent_values
 
         def checkForOutliers():
+            # Checks for outlier values.
             values = column_df.dropna()
             value_counts = values.value_counts(normalize=True)
             outlier_indices = [index for index, (value, percent) in enumerate(value_counts.items()) if percent < 0.05 or percent > 0.95]
@@ -103,11 +107,13 @@ class Helper:
             return outlier_indexes_df if outlier_indexes_df else None
 
         def isTotallyRandom():
+            # Checks if the column is totally random.
             unique_count = column_df.nunique()
             total_count = len(column_df.dropna())
             unique_percent = unique_count / total_count
             return unique_percent > Constants.UNIQUE_PERCENT
 
+        # Call internal functions to check different types of pattern consistency
         inconsistent_rows = checkLengthConsistency()
         inconsistent_rows = checkSerialConsistency() if inconsistent_rows else None
         inconsistent_rows = checkForOutliers() if inconsistent_rows else None
@@ -116,10 +122,21 @@ class Helper:
         return manual, inconsistent_rows
 
     def calculateCardinality(self, dataframe):
+        # Calculates cardinality for each column.
+
+        # Initialize an empty dictionary to store cardinality values for each column
         cardinality = {}
+
+        # Iterate over each column in the DataFrame
         for column in dataframe.columns:
+            # Calculate the number of unique values in the column and store it in the dictionary
             cardinality[column] = dataframe[column].nunique()
+
+        # Return the dictionary containing cardinality values for each column
         return cardinality
 
     def calculateGranularity(self, dataframe):
+        # Calculates granularity of a dataset.
+        # Return the number of rows in the DataFrame, which represents the granularity of the dataset
         return len(dataframe)
+
