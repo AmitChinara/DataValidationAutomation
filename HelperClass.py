@@ -2,6 +2,7 @@ import re  # Importing regular expression module
 from datetime import datetime  # Importing datetime module for date and time operations
 from ConstantsModule import Constants  # Importing constants
 
+
 class Helper:
 
     def __init__(self):
@@ -90,7 +91,8 @@ class Helper:
             for value in values:
                 if pattern is None:
                     pattern = value
-                elif value.isdigit() and (str(int(value)) == str(int(pattern) + gap) or str(int(value)) == str(int(pattern) - gap)):
+                elif value.isdigit() and (
+                        str(int(value)) == str(int(pattern) + gap) or str(int(value)) == str(int(pattern) - gap)):
                     pattern = value
                 else:
                     inconsistent_values.append(value)
@@ -101,9 +103,11 @@ class Helper:
             # Checks for outlier values.
             values = column_df.dropna()
             value_counts = values.value_counts(normalize=True)
-            outlier_indices = [index for index, (value, percent) in enumerate(value_counts.items()) if percent < 0.05 or percent > 0.95]
+            outlier_indices = [index for index, (value, percent) in enumerate(value_counts.items()) if
+                               percent < 0.05 or percent > 0.95]
             outlier_values = value_counts.index[outlier_indices]
-            outlier_indexes_df = [index + 1 for index, value in values.reset_index(drop=True).items() if value in outlier_values]
+            outlier_indexes_df = [index + 1 for index, value in values.reset_index(drop=True).items() if
+                                  value in outlier_values]
             return outlier_indexes_df if outlier_indexes_df else None
 
         def isTotallyRandom():
@@ -139,4 +143,3 @@ class Helper:
         # Calculates granularity of a dataset.
         # Return the number of rows in the DataFrame, which represents the granularity of the dataset
         return len(dataframe)
-

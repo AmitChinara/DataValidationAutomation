@@ -5,6 +5,7 @@ from ConstantsModule import Constants  # Constants module containing predefined 
 from FileHandleClass import FileHandling  # FileHandling class for handling file operations
 from HelperClass import Helper  # Helper class for various data analysis operations
 
+
 # Main class for the script
 class Main:
 
@@ -42,7 +43,8 @@ class Main:
         total_column_number = len(column_name_list)
 
         # Writing total number of columns in the file
-        file_obj.writeData(f'{self.filename} has total {total_column_number} column{"s" if total_column_number > 1 else ""}.')
+        file_obj.writeData(
+            f'{self.filename} has total {total_column_number} column{"s" if total_column_number > 1 else ""}.')
 
         # Writing separator line
         file_obj.writeData(f'---------------------------------------------------------', False)
@@ -65,7 +67,8 @@ class Main:
                 if manual:
                     file_obj.writeData(f'For the column({column_name}), manual checking is required.')
                 else:
-                    file_obj.writeData(f'For the column({column_name}), row number\n\t\t{inconsistent_rows}\n\t{"is" if len(inconsistent_rows) == 1 else "are"} not having consistent data.')
+                    file_obj.writeData(
+                        f'For the column({column_name}), row number\n\t\t{inconsistent_rows}\n\t{"is" if len(inconsistent_rows) == 1 else "are"} not having consistent data.')
             else:
                 file_obj.writeData(f'The column({column_name}) looks fine.')
 
@@ -85,7 +88,8 @@ class Main:
             file_obj.writeData(f'   {column}: {value} number of unique values')
 
         # Writing granularity information
-        file_obj.writeData(f'The granularity of the dataset is determined by the total number of rows, indicating the level of detail present. Granularity: {granularity}')
+        file_obj.writeData(f'The granularity of the dataset is determined by the total number of rows, indicating the '
+                           f'level of detail present. Granularity: {granularity}')
         file_obj.writeData(f'---------------------------------------------------------', False)
 
     # Method to fetch command line arguments
@@ -114,15 +118,19 @@ if __name__ == '__main__':
     time_zone = Constants.TIME_ZONE
 
     # Writing script start message
-    file_obj.writeData(f'=============||Script started ({helper.prepareCurrentTime()} {time_zone})||=============', False)
+    file_obj.writeData(f'=============||Script started ({helper.prepareCurrentTime()} {time_zone})||=============',
+                       False)
     # Creating Main object and executing the main method
     main_obj = Main()
     try:
         main_obj.main()  # Executing main method
         # Writing script finish message
-        file_obj.writeData(f'=============||Script finished ({helper.prepareCurrentTime()} {time_zone})||=============\n', False)
+        file_obj.writeData(
+            f'=============||Script finished ({helper.prepareCurrentTime()} {time_zone})||=============\n', False)
         print('Script is over.')
     except Exception as e:
         # Handling and logging any exceptions that occur during execution
-        file_obj.writeData(f'ERROR: {e}\n=============||Script terminated with an ERROR ({helper.prepareCurrentTime()} {time_zone})||=============\n', False)
+        file_obj.writeData(
+            f'ERROR: {e}\n=============||Script terminated with an ERROR ({helper.prepareCurrentTime()} {time_zone})||=============\n',
+            False)
         print('Script is terminated with error.')
