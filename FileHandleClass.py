@@ -1,3 +1,4 @@
+import os  # Importing the os module for operating system-related functions
 import pandas as pd  # Importing pandas for data manipulation
 import ExceptionClass as exp  # Importing custom exception classes
 from ConstantsModule import Constants  # Importing constants
@@ -42,3 +43,15 @@ class FileHandling:
                 file.write(f'{FileHandling.count_log}. {info}\n')  # Writing log entry with count
             else:
                 file.write(f'{info}\n')  # Writing log entry without count
+
+    def deleteOldestLogFile(self):
+        # Delete the oldest log file if the total number of log files exceeds 10
+        log_files = [f for f in os.listdir(Constants.LOG_FOLDER) if f.startswith(Constants.LOG_FILE)]
+        if len(log_files) > 10:
+            # Sort log files based on creation time
+            log_files.sort(key=lambda x: os.path.getctime(os.path.join(Constants.LOG_FOLDER, x)))
+
+            # Delete the oldest log file
+            oldest_log_file = os.path.join(Constants.LOG_FOLDER, log_files[0])
+            os.remove(oldest_log_file)
+            print(f"Deleted oldest log file: {oldest_log_file}")

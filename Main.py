@@ -134,3 +134,6 @@ if __name__ == '__main__':
             f'ERROR: {e}\n=============||Script terminated with an ERROR ({helper.prepareCurrentTime()} {time_zone})||=============\n',
             False)
         print('Script is terminated with error.')
+
+    finally:
+        file_obj.deleteOldestLogFile()
