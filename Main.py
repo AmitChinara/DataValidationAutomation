@@ -33,7 +33,7 @@ class Main:
 
         # Checking if the primary column is valid
         if helper.isPrimaryColumn(primary_column_df):
-            pass
+            file_obj.writeData(f'"{self.primary_column}" has all the unique data, so it can be a primary column.')
         else:
             # Writing error message if primary column is not valid
             file_obj.writeData(f'"{self.primary_column}" is not a primary column in "{self.filename}"')
