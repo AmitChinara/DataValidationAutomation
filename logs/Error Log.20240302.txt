@@ -1,36 +1,16 @@
-=============||Script started (06:01:35 IST)||=============
-ERROR: You need to send primary column name.
-=============||Script terminated with an ERROR (06:01:35 IST)||=============
-
-=============||Script started (06:07:30 IST)||=============
-ERROR: You need to send primary column name.
-=============||Script terminated with an ERROR (06:07:30 IST)||=============
-
-=============||Script started (06:07:39 IST)||=============
-ERROR: You need to send primary column name.
-=============||Script terminated with an ERROR (06:07:39 IST)||=============
-
-=============||Script started (06:07:41 IST)||=============
-ERROR: You need to send primary column name.
-=============||Script terminated with an ERROR (06:07:41 IST)||=============
-
-=============||Script started (06:07:42 IST)||=============
-ERROR: You need to send primary column name.
-=============||Script terminated with an ERROR (06:07:42 IST)||=============
-
-=============||Script started (06:08:59 IST)||=============
-ERROR: You need to send primary column name for data/data.xlsx.
-=============||Script terminated with an ERROR (06:08:59 IST)||=============
-
-=============||Script started (06:09:21 IST)||=============
+=============||Script started (14:27:49 IST)||=============
 ERROR: You need to send primary column name for data/data.xlsx
-=============||Script terminated with an ERROR (06:09:21 IST)||=============
+=============||Script terminated with an ERROR (14:27:49 IST)||=============
 
-=============||Script started (13:37:29 IST)||=============
+=============||Script started (14:27:28 IST)||=============
 ERROR: [Errno 2] No such file or directory: 'data/data01.xlsx'
-=============||Script terminated with an ERROR (13:37:29 IST)||=============
+=============||Script terminated with an ERROR (14:27:28 IST)||=============
 
-=============||Script started (13:37:36 IST)||=============
+=============||Script started (14:27:25 IST)||=============
 ERROR: [Errno 2] No such file or directory: 'data/data01.xlsx'
-=============||Script terminated with an ERROR (13:37:36 IST)||=============
+=============||Script terminated with an ERROR (14:27:25 IST)||=============
+
+=============||Script started (14:27:22 IST)||=============
+ERROR: [Errno 2] No such file or directory: 'data/data01.xlsx'
+=============||Script terminated with an ERROR (14:27:22 IST)||=============
 

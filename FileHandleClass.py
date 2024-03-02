@@ -50,6 +50,16 @@ class FileHandling:
         filename = f'{Constants.LOG_FOLDER}{Constants.LOG_FILE}{Constants.TXT}'
         date = self.year_month_day
 
+        def deleteFile(filepath = ''):
+            # Check if the file exists before attempting to delete
+            if os.path.exists(filepath):
+                with open(filepath, 'w') as obj:
+                    obj.write('')
+                print("Log file deleted successfully.")
+            else:
+                print("Log file does not exist.")
+
+
         def deleteLogFile():
             # Check if the file exists before attempting to delete
             if os.path.exists(filename):
@@ -78,7 +88,15 @@ class FileHandling:
                 with open(filename, 'r') as log_file:
                     log_data = log_file.read()
                     with open(final_log_filename, write_mode) as final_log_file:
-                        final_log_file.write(log_data)
+                        if write_mode == 'w':
+                            final_log_file.write(log_data)
+                        else:
+                            with open(final_log_filename, 'r') as read_final_file:
+                                old_content = read_final_file.read()
+                                deleteFile(final_log_filename)
+                                final_log_file.write(log_data)
+                                final_log_file.write(old_content)
+
             else:
                 print("Log file does not exist.")
 
