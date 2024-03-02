@@ -26,3 +26,11 @@ ERROR: You need to send primary column name for data/data.xlsx.
 ERROR: You need to send primary column name for data/data.xlsx
 =============||Script terminated with an ERROR (06:09:21 IST)||=============
 
+=============||Script started (13:37:29 IST)||=============
+ERROR: [Errno 2] No such file or directory: 'data/data01.xlsx'
+=============||Script terminated with an ERROR (13:37:29 IST)||=============
+
+=============||Script started (13:37:36 IST)||=============
+ERROR: [Errno 2] No such file or directory: 'data/data01.xlsx'
+=============||Script terminated with an ERROR (13:37:36 IST)||=============
+

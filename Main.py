@@ -131,6 +131,8 @@ if __name__ == '__main__':
             f'=============||Script finished ({helper.prepareCurrentTime()} {time_zone})||=============\n', False)
         print('Script is over.')
     except Exception as e:
+        if type(e) is type(FileNotFoundError()):
+            Main.filename = None
         # Handling and logging any exceptions that occur during execution
         file_obj.writeData(
             f'ERROR: {e}\n=============||Script terminated with an ERROR ({helper.prepareCurrentTime()} {time_zone})||=============\n',
