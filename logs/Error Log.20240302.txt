@@ -1,3 +1,7 @@
+=============||Script started (14:32:29 IST)||=============
+ERROR: You need to send primary column name for data/data.xlsx
+=============||Script terminated with an ERROR (14:32:29 IST)||=============
+
 =============||Script started (14:27:49 IST)||=============
 ERROR: You need to send primary column name for data/data.xlsx
 =============||Script terminated with an ERROR (14:27:49 IST)||=============

@@ -55,6 +55,7 @@ class FileHandling:
             if os.path.exists(filepath):
                 with open(filepath, 'w') as obj:
                     obj.write('')
+                    obj.close()
                 print("Log file deleted successfully.")
             else:
                 print("Log file does not exist.")
@@ -87,6 +88,7 @@ class FileHandling:
             if os.path.exists(filename):
                 with open(filename, 'r') as log_file:
                     log_data = log_file.read()
+                    log_file.close()
                     with open(final_log_filename, write_mode) as final_log_file:
                         if write_mode == 'w':
                             final_log_file.write(log_data)
@@ -96,6 +98,8 @@ class FileHandling:
                                 deleteFile(final_log_filename)
                                 final_log_file.write(log_data)
                                 final_log_file.write(old_content)
+                                final_log_file.close()
+                                read_final_file.close()
 
             else:
                 print("Log file does not exist.")
