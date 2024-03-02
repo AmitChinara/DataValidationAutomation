@@ -1,0 +1,39 @@
+=============||Script started (06:12:04 IST)||=============
+1. "SLNO" has all the unique data, so it can be a primary column.
+2. data/data.xlsx has total 8 columns.
+---------------------------------------------------------
+3. The type of column SLNO is: numeric
+4. The type of column First Name is: string
+5. The type of column Last Name is: string
+6. The type of column Gender is: string
+7. The type of column Country is: string
+8. The type of column Age is: numeric
+9. The type of column Date is: date
+10. The type of column Id is: numeric
+---------------------------------------------------------
+---------------------------------------------------------
+11. For the column(SLNO), manual checking is required.
+12. For the column(First Name), manual checking is required.
+13. For the column(Last Name), manual checking is required.
+14. For the column(Gender), row number
+		[50]
+	is not having consistent data.
+15. The column(Country) looks fine.
+16. The column(Age) looks fine.
+17. The column(Date) looks fine.
+18. The column(Id) looks fine.
+---------------------------------------------------------
+---------------------------------------------------------
+Cardinality:
+19.    SLNO: 50 number of unique values
+20.    First Name: 50 number of unique values
+21.    Last Name: 50 number of unique values
+22.    Gender: 3 number of unique values
+23.    Country: 3 number of unique values
+24.    Age: 23 number of unique values
+25.    Date: 3 number of unique values
+26.    Id: 43 number of unique values
+27. The granularity of the dataset is determined by the total number of rows, indicating the level of detail present. Granularity: 50
+---------------------------------------------------------
+=============||Script finished (06:12:04 IST)||=============
+

@@ -8,6 +8,7 @@ from HelperClass import Helper  # Helper class for various data analysis operati
 
 # Main class for the script
 class Main:
+    filename = None
 
     def __init__(self):
         # Initializing instance variables
@@ -102,13 +103,14 @@ class Main:
         elif total_arg < 3:
             value = sys.argv[1]
             if Constants.CSV in value or Constants.XLSX in value:
-                raise exp.DataNotSentException('You need to send primary column name.')
+                raise exp.DataNotSentException(f'You need to send primary column name for {value}')
             else:
                 raise exp.DataNotSentException('You need to send file name.')
 
         # Setting filename and primary_column from command line arguments
         self.filename = sys.argv[1]
         self.primary_column = sys.argv[2]
+        Main.filename = self.filename
 
 
 if __name__ == '__main__':
@@ -136,4 +138,4 @@ if __name__ == '__main__':
         print('Script is terminated with error.')
 
     finally:
-        file_obj.deleteOldestLogFile()
+        file_obj.finalLogFile(Main.filename)

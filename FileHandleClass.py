@@ -35,7 +35,7 @@ class FileHandling:
         self.year_month_day = helper.prepareCurrentDate()  # Formatting current date
 
         # Constructing log file name based on current date
-        filename = Constants.LOG_FOLDER + Constants.LOG_FILE + self.year_month_day + Constants.TXT
+        filename = f'{Constants.LOG_FOLDER}{Constants.LOG_FILE}{Constants.TXT}'
 
         # Writing information to log file
         with open(filename, 'a+') as file:
@@ -44,14 +44,43 @@ class FileHandling:
             else:
                 file.write(f'{info}\n')  # Writing log entry without count
 
-    def deleteOldestLogFile(self):
-        # Delete the oldest log file if the total number of log files exceeds 10
-        log_files = [f for f in os.listdir(Constants.LOG_FOLDER) if f.startswith(Constants.LOG_FILE)]
-        if len(log_files) > 10:
-            # Sort log files based on creation time
-            log_files.sort(key=lambda x: os.path.getctime(os.path.join(Constants.LOG_FOLDER, x)))
+    # Method to delete the log file
 
-            # Delete the oldest log file
-            oldest_log_file = os.path.join(Constants.LOG_FOLDER, log_files[0])
-            os.remove(oldest_log_file)
-            print(f"Deleted oldest log file: {oldest_log_file}")
+    def finalLogFile(self, main_file):
+        filename = f'{Constants.LOG_FOLDER}{Constants.LOG_FILE}{Constants.TXT}'
+        date = self.year_month_day
+
+        def deleteLogFile():
+            # Check if the file exists before attempting to delete
+            if os.path.exists(filename):
+                os.remove(filename)
+                print("Log file deleted successfully.")
+            else:
+                print("Log file does not exist.")
+
+        def writeLogToFinalLog():
+            if main_file is not None:
+                filename_value = ''
+                tokens = main_file.split('/')
+                for token in tokens:
+                    if token.endswith('.csv') or token.endswith('.xlsx'):
+                        # Determine the length of the extension
+                        extension_length = len(token.split('.')[-1]) + 1
+                        # Remove the extension and print the rest
+                        filename_value = token[:-extension_length]
+                final_log_filename = f'{Constants.LOG_FOLDER}{filename_value.upper()}_{Constants.LOG_FILE}.{date}{Constants.TXT}'
+                write_mode = 'w'
+            else:
+                final_log_filename = f'{Constants.LOG_FOLDER}{Constants.ERROR_LOG_FILE}.{date}{Constants.TXT}'
+                write_mode = 'a+'
+
+            if os.path.exists(filename):
+                with open(filename, 'r') as log_file:
+                    log_data = log_file.read()
+                    with open(final_log_filename, write_mode) as final_log_file:
+                        final_log_file.write(log_data)
+            else:
+                print("Log file does not exist.")
+
+        writeLogToFinalLog()
+        deleteLogFile()

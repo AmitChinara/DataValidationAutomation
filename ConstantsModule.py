@@ -2,7 +2,8 @@ class Constants:
     CSV = ".csv"  # File extension for CSV files
     XLSX = '.xlsx'  # File extension for Excel files
     TXT = '.txt'  # File extension for text files
-    LOG_FILE = 'Log.'  # Prefix for log file names
+    LOG_FILE = 'Log'  # Prefix for log file names
+    ERROR_LOG_FILE = 'Error Log'  # Prefix for error log file names
     TIME_ZONE = 'IST'  # Time zone abbreviation
     VALID_PERCENTAGE = 0.85  # Percentage used for validation (85%)
     LOG_FOLDER = 'logs/'  # Folder where log files are stored
