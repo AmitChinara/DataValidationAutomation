@@ -53,11 +53,11 @@ class Helper:
         alpha_percent = alpha_count / total_count
         date_percent = date_count / total_count
 
-        if date_percent > 0.85:
+        if date_percent > Constants.VALID_PERCENTAGE:
             return 'date'
-        elif numeric_percent > 0.85:
+        elif numeric_percent > Constants.VALID_PERCENTAGE:
             return 'numeric'
-        elif alpha_percent > 0.85:
+        elif alpha_percent > Constants.VALID_PERCENTAGE:
             return 'string'
         else:
             return 'alphanumeric'
