@@ -15,7 +15,6 @@ class Main:
         self.dataframe = None  # Placeholder for the dataset
         self.script_path = None  # Path of the script file
         self.filename = None  # Name of the input file
-        self.primary_column = None  # Name of the primary column in the dataset
 
     # Main method to execute the script
     def main(self):
@@ -26,26 +25,28 @@ class Main:
         file_obj = FileHandling(self.filename)
         self.dataframe = file_obj.loadData()  # Loading data into a pandas DataFrame
 
-        # Extracting the primary column from the DataFrame
-        primary_column_df = self.dataframe[self.primary_column]
-
         # Creating Helper object for data analysis operations
         helper = Helper()
-
-        # Checking if the primary column is valid
-        if helper.isPrimaryColumn(primary_column_df):
-            file_obj.writeData(f'"{self.primary_column}" has all the unique data, so it can be a primary column.')
-        else:
-            # Writing error message if primary column is not valid
-            file_obj.writeData(f'"{self.primary_column}" is not a primary column in "{self.filename}"')
 
         # Extracting column names from the DataFrame
         column_name_list = helper.fetchColumnName(self.dataframe)
         total_column_number = len(column_name_list)
+        potential_primary_columns = []
 
         # Writing total number of columns in the file
         file_obj.writeData(
             f'{self.filename} has total {total_column_number} column{"s" if total_column_number > 1 else ""}.')
+
+        for column_name in column_name_list:
+            if helper.isPrimaryColumn(self.dataframe[column_name]):
+                potential_primary_columns.append(column_name)
+        length = len(potential_primary_columns)
+        if length != 0:
+            file_obj.writeData(f'{potential_primary_columns} {"is" if length == 1 else "are"} potential primary column.')
+        else:
+            file_obj.writeData(f'{self.filename} has no potential primary column.')
+        # Writing separator line
+        file_obj.writeData(f'---------------------------------------------------------', False)
 
         # Writing separator line
         file_obj.writeData(f'---------------------------------------------------------', False)
@@ -97,19 +98,12 @@ class Main:
     def fetchArgumentInfo(self):
         self.script_path = sys.argv[0]  # Fetching script path
         total_arg = len(sys.argv)  # Total number of command line arguments
-        if total_arg < 2:
+        if total_arg < 1:
             # Error handling for insufficient arguments
-            raise exp.DataNotSentException('You need to send the your file name along with primary column name.')
-        elif total_arg < 3:
-            value = sys.argv[1]
-            if Constants.CSV in value or Constants.XLSX in value:
-                raise exp.DataNotSentException(f'You need to send primary column name for {value}')
-            else:
-                raise exp.DataNotSentException('You need to send file name.')
+            raise exp.DataNotSentException('You need to send the your file name.')
 
-        # Setting filename and primary_column from command line arguments
+        # Setting filename from command line arguments
         self.filename = sys.argv[1]
-        self.primary_column = sys.argv[2]
         Main.filename = self.filename
 
 
