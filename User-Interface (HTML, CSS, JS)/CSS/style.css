@@ -1,0 +1,21 @@
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    background: #092756; /* Fallback color */
+    background-image: linear-gradient(-200deg, rgba(172, 18, 18, 0.25) 0%, rgba(87, 42, 42, 0.4) 100%, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%);
+    overflow-x: hidden;
+}
+
+.container {
+    /*border: 1px solid red;*/
+    height: 95vh;
+    display: flex;
+}
+
+.form-container {
+    /*border: 3px solid darkblue;*/
+    margin: auto;
+    height: fit-content;
+    width: fit-content;
+}
