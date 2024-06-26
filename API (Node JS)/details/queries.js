@@ -1,0 +1,10 @@
+const FETCH_DATABASE = "SHOW DATABASES";
+
+const FETCH_TABLE = "SELECT TABLE_NAME\n" +
+    "FROM {{datbase_name}}.INFORMATION_SCHEMA.TABLES\n" +
+    "WHERE TABLE_TYPE = 'BASE TABLE'";
+
+module.exports = {
+    FETCH_DATABASE,
+    FETCH_TABLE
+}
