@@ -67,10 +67,11 @@
     border-bottom-right-radius: 0;
     background-color: #5d86c6;
     color: black;
-    font-family: Calibri;
+    font-family: Calibri, serif;
     /*font-weight: bold;*/
     font-size: large;
     width: 70%;
+    cursor: pointer;
 }
 
 .database-container {
